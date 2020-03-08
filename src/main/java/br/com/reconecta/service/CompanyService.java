@@ -5,7 +5,9 @@ import org.springframework.stereotype.Component;
 
 import br.com.reconecta.entrypoint.dto.CompanyDto;
 import br.com.reconecta.gateway.CompanyGateway;
+import br.com.reconecta.mapper.CompanyMapper;
 import br.com.reconecta.repository.CompanyRepository;
+import br.com.reconecta.repository.entity.CompanyEntity;
 
 @Component
 public class CompanyService implements CompanyGateway {
@@ -19,8 +21,8 @@ public class CompanyService implements CompanyGateway {
 
 	@Override
 	public CompanyDto save(CompanyDto dto) {
-		// TODO Auto-generated method stub
-		return null;
+		CompanyEntity entitySaved = repository.save(CompanyMapper.from(dto));
+		return CompanyMapper.from(entitySaved);
 	}
 
 }

@@ -12,4 +12,8 @@ public class CompanyMapper {
 		return CompanyEntity.builder().name(dto.getName()).build();
 	}
 
+	public static CompanyDto from(CompanyEntity entity) {
+		return CompanyDto.builder().name(entity.getName()).build();
+	}
+
 }
