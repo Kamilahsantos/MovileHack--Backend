@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.reconecta.entrypoint.dto.CompanyDto;
+import br.com.reconecta.entrypoint.dto.CompanySaveDto;
 import br.com.reconecta.repository.entity.CompanyEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -12,6 +13,10 @@ import lombok.AllArgsConstructor;
 public class CompanyMapper {
 
 	public static CompanyEntity from(CompanyDto dto) {
+		return CompanyEntity.builder().cnpj(dto.getCnpj()).build();
+	}
+
+	public static CompanyEntity from(CompanySaveDto dto) {
 		return CompanyEntity.builder().cnpj(dto.getCnpj()).build();
 	}
 

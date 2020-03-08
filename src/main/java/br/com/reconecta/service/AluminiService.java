@@ -7,31 +7,40 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.reconecta.entrypoint.dto.AluminiDto;
+import br.com.reconecta.entrypoint.dto.AluminiSaveDto;
 import br.com.reconecta.gateway.AluminiGateway;
 import br.com.reconecta.mapper.AluminiMapper;
 import br.com.reconecta.repository.AluminiRepository;
+import br.com.reconecta.repository.ProfileRepository;
 import br.com.reconecta.repository.entity.AluminiEntity;
+import br.com.reconecta.repository.entity.ProfileEntity;
 
 @Component
 public class AluminiService implements AluminiGateway {
 
 	private AluminiRepository repository;
+	private ProfileRepository profileRepository;
 
 	@Autowired
-	public AluminiService(AluminiRepository repository) {
+	public AluminiService(AluminiRepository repository, ProfileRepository profileRepository) {
 		this.repository = repository;
+		this.profileRepository = profileRepository;
 	}
 
 	@Override
-	public AluminiDto save(AluminiDto dto) {
+	public AluminiDto save(AluminiSaveDto dto) {
 		AluminiEntity entitySaved = repository.save(AluminiMapper.from(dto));
+		ProfileEntity profile = entitySaved.getProfile();
+		profile.setAlumini(entitySaved);
+		profileRepository.save(profile);
 		return AluminiMapper.from(entitySaved);
 	}
 
 	@Override
 	public List<AluminiDto> getAll() {
 		List<AluminiEntity> listEntity = repository.findAll();
-		return AluminiMapper.from(listEntity);
+		List<AluminiDto> listConverted = AluminiMapper.from(listEntity);
+		return listConverted;
 	}
 
 	@Override
@@ -42,6 +51,13 @@ public class AluminiService implements AluminiGateway {
 			return AluminiMapper.from(entityFounded.get());
 
 		return AluminiDto.builder().build();
+	}
+
+	@Override
+	public AluminiDto updated(AluminiDto dto) {
+		AluminiEntity aluminiEntyty = AluminiMapper.fromUpdated(dto);
+		AluminiEntity entityupdated = repository.save(aluminiEntyty);
+		return AluminiMapper.from(entityupdated);
 	}
 
 }

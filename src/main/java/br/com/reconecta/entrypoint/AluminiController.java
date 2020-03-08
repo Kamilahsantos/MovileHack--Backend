@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.reconecta.entrypoint.dto.AluminiDto;
+import br.com.reconecta.entrypoint.dto.AluminiSaveDto;
 import br.com.reconecta.gateway.AluminiGateway;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -33,9 +34,9 @@ public class AluminiController {
 	}
 
 	@ApiOperation(value = "Save a Alumini")
-	@ApiResponses(value = { @ApiResponse(code = 201, message = "Sucess") })
+	@ApiResponses(value = { @ApiResponse(code = 201, message = "Created") })
 	@PostMapping(path = "/alumini", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Void> saveEndPoint(@RequestBody AluminiDto model) {
+	public ResponseEntity<Void> saveEndPoint(@RequestBody AluminiSaveDto model) {
 		gateway.save(model);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
@@ -48,10 +49,18 @@ public class AluminiController {
 	}
 
 	@ApiOperation(value = "Get a Alumini")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "Sucess") })
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Founded") })
 	@GetMapping(path = "/alumini/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<AluminiDto> getByIdEndPoint(@PathVariable Long id) {
 		return ResponseEntity.ok(gateway.getById(id));
 	}
+
+//	@ApiOperation(value = "Update a Alumini")
+//	@ApiResponses(value = { @ApiResponse(code = 200, message = "Updated") })
+//	@PutMapping(path = "/alumini", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public ResponseEntity<AluminiDto> updateEndPoint(@RequestBody AluminiDto model) {
+//		AluminiDto modelUpdated = gateway.updated(model);
+//		return ResponseEntity.ok(modelUpdated);
+//	}
 
 }

@@ -11,12 +11,25 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AluminiDto implements Serializable {
+public class ProfileDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
-	private String cpf;
-	private ProfileDto profile;
 
+	private String country;
+
+	private String state;
+
+	private String city;
+
+	private String description;
+
+	private String email;
+
+	private String name;
+
+	private CompanyDto company;
+
+	private AluminiDto alumini;
 }

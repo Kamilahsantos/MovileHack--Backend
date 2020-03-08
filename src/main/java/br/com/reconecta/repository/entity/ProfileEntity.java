@@ -34,30 +34,30 @@ public class ProfileEntity implements Serializable {
 	@Column(name = "profile_id")
 	private Long id;
 
-	@Column(name = "country", nullable = false)
+	@Column(name = "country")
 	private String country;
 
-	@Column(name = "state", nullable = false)
+	@Column(name = "state")
 	private String state;
 
-	@Column(name = "city", nullable = false)
+	@Column(name = "city")
 	private String city;
 
-	@Column(name = "description", nullable = false)
+	@Column(name = "description")
 	private String description;
 
-	@Column(name = "email", nullable = false)
+	@Column(name = "email")
 	private String email;
 
-	@Column(name = "name", nullable = false)
+	@Column(name = "name")
 	private String name;
 
-	@OneToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "company_id", nullable = false)
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "company_id", nullable = true)
 	private CompanyEntity company;
 
-	@OneToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "alumini_id", nullable = false)
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "alumini_id", nullable = true)
 	private AluminiEntity alumini;
 
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.reconecta.entrypoint.dto.CompanyDto;
+import br.com.reconecta.entrypoint.dto.CompanySaveDto;
 import br.com.reconecta.gateway.CompanyGateway;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -35,7 +36,7 @@ public class CompanyController {
 	@ApiOperation(value = "Save a Company")
 	@ApiResponses(value = { @ApiResponse(code = 201, message = "Sucess") })
 	@PostMapping(path = "/company", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Void> saveEndPoint(@RequestBody CompanyDto model) {
+	public ResponseEntity<Void> saveEndPoint(@RequestBody CompanySaveDto model) {
 		gateway.save(model);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
