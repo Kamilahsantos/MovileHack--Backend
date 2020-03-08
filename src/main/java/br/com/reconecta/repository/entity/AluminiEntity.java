@@ -1,15 +1,15 @@
 package br.com.reconecta.repository.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,7 +33,8 @@ public class AluminiEntity implements Serializable {
 	@Column(name = "cpf", nullable = false)
 	private String cpf;
 
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "alumini")
-	private ProfileEntity profile;
+	@OneToMany
+	@JoinColumn(name = "alumini")
+	private List<ApplicationEntity> applications;
 
 }

@@ -13,7 +13,6 @@ import br.com.reconecta.mapper.AluminiMapper;
 import br.com.reconecta.repository.AluminiRepository;
 import br.com.reconecta.repository.ProfileRepository;
 import br.com.reconecta.repository.entity.AluminiEntity;
-import br.com.reconecta.repository.entity.ProfileEntity;
 
 @Component
 public class AluminiService implements AluminiGateway {
@@ -30,9 +29,6 @@ public class AluminiService implements AluminiGateway {
 	@Override
 	public AluminiDto save(AluminiSaveDto dto) {
 		AluminiEntity entitySaved = repository.save(AluminiMapper.from(dto));
-		ProfileEntity profile = entitySaved.getProfile();
-		profile.setAlumini(entitySaved);
-		profileRepository.save(profile);
 		return AluminiMapper.from(entitySaved);
 	}
 

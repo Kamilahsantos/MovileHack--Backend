@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import br.com.reconecta.entrypoint.dto.CompanyDto;
 import br.com.reconecta.entrypoint.dto.CourseDto;
 import br.com.reconecta.entrypoint.dto.CourseSaveDto;
+import br.com.reconecta.entrypoint.dto.CourseUpdateDto;
 import br.com.reconecta.gateway.CourseGateway;
 import br.com.reconecta.mapper.CourseMapper;
 import br.com.reconecta.repository.CompanyRepository;
@@ -45,6 +46,15 @@ public class CourseService implements CourseGateway {
 	public CompanyDto getById(Long id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public CourseUpdateDto updateCourse(CourseUpdateDto dto) {
+		CourseEntity entityReturned = repository.findById(dto.getId()).get();
+		CourseEntity courseEntity = CourseMapper.fromUpdate(dto);
+		courseEntity.setCompany(entityReturned.getCompany());
+		CourseEntity entityUpdated = repository.save(courseEntity);
+		return CourseMapper.fromUpdate(entityUpdated);
 	}
 
 }

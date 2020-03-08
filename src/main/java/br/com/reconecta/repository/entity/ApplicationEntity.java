@@ -1,7 +1,6 @@
 package br.com.reconecta.repository.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,35 +20,21 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CourseEntity implements Serializable {
+public class ApplicationEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "course_id")
+	@Column(name = "application_id")
 	private Long id;
 
-	@Column(name = "name")
-	private String name;
-
-	@Column(name = "date_course")
-	private String dateCourse;
-
-	@Column(name = "n_student")
-	private int numberStudent;
-
-	@Column(name = "date_experiration")
-	private String dateExpiration;
-
-	@Column(name = "active")
-	private boolean active;
+	@ManyToOne
+	@JoinColumn(name = "course_id")
+	private CourseEntity course;
 
 	@ManyToOne
-	@JoinColumn(name = "company_id")
-	private CompanyEntity company;
-
-	@OneToMany(mappedBy = "course")
-	private List<ApplicationEntity> applications;
+	@JoinColumn(name = "alumini_id")
+	private AluminiEntity alumini;
 
 }

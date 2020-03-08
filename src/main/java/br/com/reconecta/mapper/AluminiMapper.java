@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 import br.com.reconecta.entrypoint.dto.AluminiDto;
 import br.com.reconecta.entrypoint.dto.AluminiSaveDto;
 import br.com.reconecta.repository.entity.AluminiEntity;
-import br.com.reconecta.repository.entity.ProfileEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
@@ -18,16 +17,15 @@ public class AluminiMapper {
 	}
 
 	public static AluminiEntity from(AluminiSaveDto dto) {
-		return AluminiEntity.builder().cpf(dto.getCpf()).profile(ProfileEntity.builder().build()).build();
+		return AluminiEntity.builder().cpf(dto.getCpf()).build();
 	}
 
 	public static AluminiEntity fromUpdated(AluminiDto dto) {
-		return AluminiEntity.builder().cpf(dto.getCpf()).profile(ProfileMapper.from(dto.getProfile())).build();
+		return AluminiEntity.builder().cpf(dto.getCpf()).build();
 	}
 
 	public static AluminiDto from(AluminiEntity entity) {
-		return AluminiDto.builder().id(entity.getId()).cpf(entity.getCpf())
-				.profile(ProfileMapper.from(entity.getProfile())).build();
+		return AluminiDto.builder().id(entity.getId()).cpf(entity.getCpf()).build();
 	}
 
 	public static List<AluminiDto> from(List<AluminiEntity> listAluminiEntity) {

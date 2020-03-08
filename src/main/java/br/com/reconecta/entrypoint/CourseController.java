@@ -8,12 +8,14 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.reconecta.entrypoint.dto.CourseDto;
 import br.com.reconecta.entrypoint.dto.CourseSaveDto;
+import br.com.reconecta.entrypoint.dto.CourseUpdateDto;
 import br.com.reconecta.gateway.CourseGateway;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -38,6 +40,13 @@ public class CourseController {
 	public ResponseEntity<Void> saveEndPoint(@RequestBody CourseSaveDto model) {
 		gateway.save(model);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
+	}
+
+	@ApiOperation(value = "Updated a Course")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "updated") })
+	@PutMapping(path = "/course", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<CourseUpdateDto> saveEndPoint(@RequestBody CourseUpdateDto model) {
+		return ResponseEntity.ok(gateway.updateCourse(model));
 	}
 
 	@ApiOperation(value = "Get All Courses")
