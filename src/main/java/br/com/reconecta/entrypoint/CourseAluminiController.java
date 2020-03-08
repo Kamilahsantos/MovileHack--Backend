@@ -12,12 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.reconecta.entrypoint.dto.CourseAluminiDto;
 import br.com.reconecta.gateway.CourseAluminiGateway;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping("/api/v1")
+@Api(value = "Application", description = "REST API for Application", tags = { "Application" })
 public class CourseAluminiController {
 
 	private CourseAluminiGateway coursegateway;

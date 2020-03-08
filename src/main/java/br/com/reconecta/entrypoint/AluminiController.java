@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.reconecta.entrypoint.dto.CompanyDto;
-import br.com.reconecta.gateway.CompanyGateway;
+import br.com.reconecta.entrypoint.dto.AluminiDto;
+import br.com.reconecta.gateway.AluminiGateway;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -22,35 +22,35 @@ import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping("/api/v1")
-@Api(value = "Company", description = "REST API for Company", tags = { "Company" })
-public class CompanyController {
+@Api(value = "Alumini", description = "REST API for Alumini", tags = { "Alumini" })
+public class AluminiController {
 
-	private CompanyGateway gateway;
+	private AluminiGateway gateway;
 
 	@Autowired
-	public CompanyController(CompanyGateway gateway) {
+	public AluminiController(AluminiGateway gateway) {
 		this.gateway = gateway;
 	}
 
-	@ApiOperation(value = "Save a Company")
+	@ApiOperation(value = "Save a Alumini")
 	@ApiResponses(value = { @ApiResponse(code = 201, message = "Sucess") })
-	@PostMapping(path = "/company", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Void> saveEndPoint(@RequestBody CompanyDto model) {
+	@PostMapping(path = "/alumini", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Void> saveEndPoint(@RequestBody AluminiDto model) {
 		gateway.save(model);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 
-	@ApiOperation(value = "Get All Companys")
+	@ApiOperation(value = "Get All Aluminis")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Sucess") })
-	@GetMapping(path = "/companys", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<CompanyDto>> getAllEndPoint() {
+	@GetMapping(path = "/aluminis", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<AluminiDto>> getAllEndPoint() {
 		return ResponseEntity.ok(gateway.getAll());
 	}
 
-	@ApiOperation(value = "Get a Company")
+	@ApiOperation(value = "Get a Alumini")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Sucess") })
-	@GetMapping(path = "/company/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<CompanyDto> getByIdEndPoint(@PathVariable Long id) {
+	@GetMapping(path = "/alumini/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<AluminiDto> getByIdEndPoint(@PathVariable Long id) {
 		return ResponseEntity.ok(gateway.getById(id));
 	}
 

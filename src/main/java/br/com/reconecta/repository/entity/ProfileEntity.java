@@ -2,7 +2,6 @@ package br.com.reconecta.repository.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -57,7 +56,8 @@ public class ProfileEntity implements Serializable {
 	@JoinColumn(name = "company_id", nullable = false)
 	private CompanyEntity company;
 
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "profile")
+	@OneToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "alumini_id", nullable = false)
 	private AluminiEntity alumini;
 
 }
