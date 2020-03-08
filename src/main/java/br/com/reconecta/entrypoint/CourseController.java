@@ -33,7 +33,7 @@ public class CourseController {
 	}
 
 	@ApiOperation(value = "Save a Course")
-	@ApiResponses(value = { @ApiResponse(code = 201, message = "Sucess") })
+	@ApiResponses(value = { @ApiResponse(code = 201, message = "Created") })
 	@PostMapping(path = "/course", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Void> saveEndPoint(@RequestBody CourseSaveDto model) {
 		gateway.save(model);
