@@ -21,7 +21,8 @@ public class CompanyMapper {
 	}
 
 	public static CompanyDto from(CompanyEntity entity) {
-		return CompanyDto.builder().id(entity.getId()).cnpj(entity.getCnpj()).build();
+		return CompanyDto.builder().id(entity.getId()).cnpj(entity.getCnpj())
+				.courses(CourseMapper.from(entity.getCourses())).build();
 	}
 
 	public static List<CompanyDto> from(List<CompanyEntity> listEntity) {

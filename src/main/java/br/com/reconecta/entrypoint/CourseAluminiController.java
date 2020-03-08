@@ -10,16 +10,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.reconecta.entrypoint.dto.CourseAluminiDto;
+import br.com.reconecta.entrypoint.dto.CourseSaveDto;
 import br.com.reconecta.gateway.CourseAluminiGateway;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping("/api/v1")
-@Api(value = "Application", description = "REST API for Application", tags = { "Application" })
 public class CourseAluminiController {
 
 	private CourseAluminiGateway coursegateway;
@@ -31,24 +29,24 @@ public class CourseAluminiController {
 
 	@ApiOperation(value = "Save a Course")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Sucess") })
-	@PostMapping(path = "/course", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Void> saveEndPoint(@RequestBody CourseAluminiDto model) {
+	@PostMapping(path = "/Oldcourse", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Void> saveEndPoint(@RequestBody CourseSaveDto model) {
 		coursegateway.save(model);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 
 	@ApiOperation(value = "Update a Course")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Sucess") })
-	@PutMapping(path = "/course/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Void> updateEndPoint(@RequestBody CourseAluminiDto model) {
+	@PutMapping(path = "/Oldcourse/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Void> updateEndPoint(@RequestBody CourseSaveDto model) {
 		coursegateway.save(model);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).build();
 	}
 
 	@ApiOperation(value = "Delete a Course")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Sucess") })
-	@PostMapping(path = "/course/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Void> deleteEndPoint(@RequestBody CourseAluminiDto model) {
+	@PostMapping(path = "/Oldcourse/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Void> deleteEndPoint(@RequestBody CourseSaveDto model) {
 		coursegateway.save(model);
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}

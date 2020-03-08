@@ -7,7 +7,7 @@ import br.com.reconecta.entrypoint.dto.CompanySaveDto;
 
 public interface CompanyGateway {
 
-	public CompanyDto save(CompanySaveDto dto);
+	public void save(CompanySaveDto dto);
 
 	public List<CompanyDto> getAll();
 

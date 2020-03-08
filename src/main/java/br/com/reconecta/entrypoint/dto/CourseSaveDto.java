@@ -1,7 +1,6 @@
 package br.com.reconecta.entrypoint.dto;
 
 import java.io.Serializable;
-import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,12 +11,20 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CompanyDto implements Serializable {
+public class CourseSaveDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Long id;
-	private String cnpj;
-	private List<CourseDto> courses;
+	private String name;
+
+	private String dateCourse;
+
+	private int numberStudent;
+
+	private String dateExpiration;
+
+	private Long companyID;
+
+	private boolean active;
 
 }

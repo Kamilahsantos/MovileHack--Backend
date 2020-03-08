@@ -11,28 +11,21 @@ import br.com.reconecta.entrypoint.dto.CompanySaveDto;
 import br.com.reconecta.gateway.CompanyGateway;
 import br.com.reconecta.mapper.CompanyMapper;
 import br.com.reconecta.repository.CompanyRepository;
-import br.com.reconecta.repository.ProfileRepository;
 import br.com.reconecta.repository.entity.CompanyEntity;
-import br.com.reconecta.repository.entity.ProfileEntity;
 
 @Component
 public class CompanyService implements CompanyGateway {
 
 	private CompanyRepository repository;
-	private ProfileRepository profileRepository;
 
 	@Autowired
-	public CompanyService(CompanyRepository repository, ProfileRepository profileRepository) {
+	public CompanyService(CompanyRepository repository) {
 		this.repository = repository;
-		this.profileRepository = profileRepository;
 	}
 
 	@Override
-	public CompanyDto save(CompanySaveDto dto) {
+	public void save(CompanySaveDto dto) {
 		CompanyEntity entitySaved = repository.save(CompanyMapper.from(dto));
-		ProfileEntity profileEntity = ProfileEntity.builder().company(entitySaved).build();
-		profileRepository.save(profileEntity);
-		return CompanyMapper.from(entitySaved);
 	}
 
 	@Override
